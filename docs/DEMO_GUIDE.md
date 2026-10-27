@@ -10,7 +10,7 @@ manual was unavailable during this update.
 3. Configure `TRUSTGRID_DEMO_USERS` with four distinct organization accounts (at least 12 characters per password).
    Follow the JSON example in [setup.md](./setup.md). Do not commit real credentials.
 4. Start with `docker compose up --build -d` or use local mode. Wait until all five nodes are online.
-5. Sign in to the dashboard as the manufacturer administrator.
+5. Sign in to the dashboard as the Engro Corporation administrator.
 
 Existing accounts are insert-only: changing the environment variable does not replace a stored account's password.
 

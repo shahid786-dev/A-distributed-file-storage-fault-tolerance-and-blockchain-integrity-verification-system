@@ -99,7 +99,7 @@ The API does not ship with hard-coded passwords. Configure one or more initial u
 `.env`; for local Windows PowerShell, set it in the backend terminal before `run_local.py start`:
 
 ```powershell
-$env:TRUSTGRID_DEMO_USERS='[{"organization":"manufacturer","email":"manufacturer@example.test","password":"REPLACE-WITH-A-UNIQUE-STRONG-PASSWORD"},{"organization":"logistics","email":"logistics@example.test","password":"REPLACE-WITH-A-UNIQUE-STRONG-PASSWORD"},{"organization":"inspection","email":"inspection@example.test","password":"REPLACE-WITH-A-UNIQUE-STRONG-PASSWORD"},{"organization":"distributor","email":"distributor@example.test","password":"REPLACE-WITH-A-UNIQUE-STRONG-PASSWORD"}]'
+$env:TRUSTGRID_DEMO_USERS='[{"organization":"manufacturer","email":"engro.admin@example.test","password":"REPLACE-WITH-A-UNIQUE-STRONG-PASSWORD"},{"organization":"logistics","email":"tcs.admin@example.test","password":"REPLACE-WITH-A-UNIQUE-STRONG-PASSWORD"},{"organization":"inspection","email":"sgs.admin@example.test","password":"REPLACE-WITH-A-UNIQUE-STRONG-PASSWORD"},{"organization":"distributor","email":"metro.admin@example.test","password":"REPLACE-WITH-A-UNIQUE-STRONG-PASSWORD"}]'
 ```
 
 Use distinct passwords of at least 12 characters; keep real passwords out of source control, screenshots, and shell
@@ -108,10 +108,10 @@ history. For local Windows runs, collect them without echoing and construct the 
 ```powershell
 $accounts = @()
 foreach ($entry in @(
-  @{ organization = "manufacturer"; email = "manufacturer@example.test" },
-  @{ organization = "logistics"; email = "logistics@example.test" },
-  @{ organization = "inspection"; email = "inspection@example.test" },
-  @{ organization = "distributor"; email = "distributor@example.test" }
+  @{ organization = "manufacturer"; email = "engro.admin@example.test" },
+  @{ organization = "logistics"; email = "tcs.admin@example.test" },
+  @{ organization = "inspection"; email = "sgs.admin@example.test" },
+  @{ organization = "distributor"; email = "metro.admin@example.test" }
 )) {
   $secure = Read-Host "Password for $($entry.organization)" -AsSecureString
   $password = [System.Net.NetworkCredential]::new("", $secure).Password

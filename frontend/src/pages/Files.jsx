@@ -182,10 +182,10 @@ function FileDetail({ file, onChanged, onSelect, user }) {
               Grant read access to
               <select value={shareOrganization} onChange={(event) => setShareOrganization(event.target.value)}>
                 {[
-                  ["manufacturer", "Northstar Manufacturing"],
-                  ["logistics", "Wayline Logistics"],
-                  ["inspection", "Clearview Quality Inspection"],
-                  ["distributor", "Harborlight Distribution"],
+                  ["manufacturer", "Engro Corporation"],
+                  ["logistics", "TCS Pakistan"],
+                  ["inspection", "SGS Pakistan"],
+                  ["distributor", "Metro Pakistan"],
                 ].filter(([id]) => id !== user.organization).map(([id, name]) => (
                   <option key={id} value={id}>{name}</option>
                 ))}

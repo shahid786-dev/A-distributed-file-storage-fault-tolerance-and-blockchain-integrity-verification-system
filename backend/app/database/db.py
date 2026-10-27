@@ -134,12 +134,14 @@ def init_db():
         if "organization_id" not in event_columns:
             conn.execute("ALTER TABLE events ADD COLUMN organization_id TEXT")
         now_value = now()
-        conn.executemany("INSERT OR IGNORE INTO organizations (id, name, created_at) VALUES (?,?,?)", [
-            ("manufacturer", "Northstar Manufacturing", now_value),
-            ("logistics", "Wayline Logistics", now_value),
-            ("inspection", "Clearview Quality Inspection", now_value),
-            ("distributor", "Harborlight Distribution", now_value),
-        ])
+        organizations = [
+            ("manufacturer", "Engro Corporation", now_value),
+            ("logistics", "TCS Pakistan", now_value),
+            ("inspection", "SGS Pakistan", now_value),
+            ("distributor", "Metro Pakistan", now_value),
+        ]
+        conn.executemany("INSERT OR IGNORE INTO organizations (id, name, created_at) VALUES (?,?,?)", organizations)
+        conn.executemany("UPDATE organizations SET name=? WHERE id=?", [(name, org_id) for org_id, name, _ in organizations])
         _seed_initial_users(conn, now_value)
 
 
