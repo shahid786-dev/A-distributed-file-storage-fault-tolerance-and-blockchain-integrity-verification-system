@@ -230,4 +230,5 @@ Full list: [docs/limitations.md](docs/limitations.md).
 | [docs/limitations.md](docs/limitations.md) | Simplifications and limitations |
 | [docs/viva_questions.md](docs/viva_questions.md) | 30 viva questions with answers |
 | [docs/demo_script.md](docs/demo_script.md) | Presentation script |
+| [docs/GITHUB_UPLOAD_GUIDE.md](docs/GITHUB_UPLOAD_GUIDE.md) | Step-by-step Windows GitHub upload guide |
 | [docs/CEP_Report.docx](docs/CEP_Report.docx) / [.md](docs/CEP_Report.md) | Editable CEP report |
