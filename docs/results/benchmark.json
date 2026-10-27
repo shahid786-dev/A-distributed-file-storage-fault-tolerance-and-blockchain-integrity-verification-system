@@ -1,0 +1,175 @@
+{
+  "label": "Docker Compose, 5 node containers + backend, Linux VM with 2 vCPU / 8 GB RAM (development sandbox)",
+  "measured_at": "2026-10-21T21:59:32",
+  "machine": "Linux 6.18.44-fc-v139, Python 3.13.16",
+  "results": [
+    {
+      "size": "1 KB",
+      "bytes": 1024,
+      "runs": 3,
+      "client_upload": {
+        "mean": 89.4,
+        "min": 78.4,
+        "max": 99.6
+      },
+      "server_total": {
+        "mean": 85.6,
+        "min": 75.7,
+        "max": 94.1
+      },
+      "replication": {
+        "mean": 11.4,
+        "min": 10.4,
+        "max": 13.3
+      },
+      "ledger": {
+        "mean": 61.6,
+        "min": 56.0,
+        "max": 65.4
+      },
+      "verify": {
+        "mean": 85.9,
+        "min": 80.5,
+        "max": 94.9
+      },
+      "recover": {
+        "mean": 114.1,
+        "min": 103.1,
+        "max": 120.3
+      }
+    },
+    {
+      "size": "100 KB",
+      "bytes": 102400,
+      "runs": 3,
+      "client_upload": {
+        "mean": 103.9,
+        "min": 89.8,
+        "max": 120.4
+      },
+      "server_total": {
+        "mean": 100.2,
+        "min": 85.9,
+        "max": 117.0
+      },
+      "replication": {
+        "mean": 12.6,
+        "min": 11.6,
+        "max": 13.7
+      },
+      "ledger": {
+        "mean": 73.2,
+        "min": 56.9,
+        "max": 90.1
+      },
+      "verify": {
+        "mean": 90.6,
+        "min": 86.4,
+        "max": 96.2
+      },
+      "recover": {
+        "mean": 111.8,
+        "min": 110.7,
+        "max": 113.2
+      }
+    },
+    {
+      "size": "1 MB",
+      "bytes": 1048576,
+      "runs": 3,
+      "client_upload": {
+        "mean": 132.9,
+        "min": 127.3,
+        "max": 138.8
+      },
+      "server_total": {
+        "mean": 123.1,
+        "min": 119.4,
+        "max": 125.2
+      },
+      "replication": {
+        "mean": 29.6,
+        "min": 22.9,
+        "max": 35.3
+      },
+      "ledger": {
+        "mean": 77.2,
+        "min": 69.5,
+        "max": 88.8
+      },
+      "verify": {
+        "mean": 130.8,
+        "min": 126.8,
+        "max": 134.4
+      },
+      "recover": {
+        "mean": 186.1,
+        "min": 150.5,
+        "max": 217.8
+      }
+    },
+    {
+      "size": "5 MB",
+      "bytes": 5242880,
+      "runs": 3,
+      "client_upload": {
+        "mean": 227.0,
+        "min": 197.5,
+        "max": 254.4
+      },
+      "server_total": {
+        "mean": 191.7,
+        "min": 178.3,
+        "max": 200.9
+      },
+      "replication": {
+        "mean": 90.6,
+        "min": 74.9,
+        "max": 101.2
+      },
+      "ledger": {
+        "mean": 81.4,
+        "min": 74.9,
+        "max": 88.9
+      },
+      "verify": {
+        "mean": 195.9,
+        "min": 188.1,
+        "max": 210.6
+      },
+      "recover": {
+        "mean": 382.2,
+        "min": 338.2,
+        "max": 414.3
+      }
+    }
+  ],
+  "availability": {
+    "valid_replicas_before": 5,
+    "during_node2_failure": 4,
+    "after_restart": 5,
+    "download_during_failure_served_by": "node1"
+  },
+  "health_checks": {
+    "node1": {
+      "ok": 69,
+      "failed": 0
+    },
+    "node2": {
+      "ok": 67,
+      "failed": 2
+    },
+    "node3": {
+      "ok": 69,
+      "failed": 0
+    },
+    "node4": {
+      "ok": 68,
+      "failed": 1
+    },
+    "node5": {
+      "ok": 69,
+      "failed": 0
+    }
+  }
+}

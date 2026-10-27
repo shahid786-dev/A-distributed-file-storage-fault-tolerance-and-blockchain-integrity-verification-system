@@ -1,0 +1,129 @@
+# BlockStore-5: frontend + coordinator backend + five independent storage nodes.
+#   docker compose up --build -d        start everything
+#   docker compose stop node2           REAL failure of one node (container stopped)
+#   docker compose start node2          bring it back (the backend re-syncs its ledger)
+#   docker compose down                 stop everything (data volumes are kept)
+#   docker compose down -v              stop and DELETE all data
+
+x-node: &node
+  build:
+    context: .
+    dockerfile: storage_node/Dockerfile
+  image: blockstore5-node
+  restart: unless-stopped
+  networks: [blockstore]
+  healthcheck:
+    test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=2)"]
+    interval: 10s
+    timeout: 3s
+    retries: 3
+
+services:
+  node1:
+    <<: *node
+    container_name: blockstore5-node1
+    hostname: node1
+    environment:
+      NODE_ID: node1
+      NODE_SECRET: ${NODE1_SECRET:-demo-secret-node1}
+      CONTROL_TOKEN: ${CONTROL_TOKEN:-blockstore5-demo-token}
+    ports:
+      - "8001:8000"
+    volumes:
+      - node1-data:/data
+
+  node2:
+    <<: *node
+    container_name: blockstore5-node2
+    hostname: node2
+    environment:
+      NODE_ID: node2
+      NODE_SECRET: ${NODE2_SECRET:-demo-secret-node2}
+      CONTROL_TOKEN: ${CONTROL_TOKEN:-blockstore5-demo-token}
+    ports:
+      - "8002:8000"
+    volumes:
+      - node2-data:/data
+
+  node3:
+    <<: *node
+    container_name: blockstore5-node3
+    hostname: node3
+    environment:
+      NODE_ID: node3
+      NODE_SECRET: ${NODE3_SECRET:-demo-secret-node3}
+      CONTROL_TOKEN: ${CONTROL_TOKEN:-blockstore5-demo-token}
+    ports:
+      - "8003:8000"
+    volumes:
+      - node3-data:/data
+
+  node4:
+    <<: *node
+    container_name: blockstore5-node4
+    hostname: node4
+    environment:
+      NODE_ID: node4
+      NODE_SECRET: ${NODE4_SECRET:-demo-secret-node4}
+      CONTROL_TOKEN: ${CONTROL_TOKEN:-blockstore5-demo-token}
+    ports:
+      - "8004:8000"
+    volumes:
+      - node4-data:/data
+
+  node5:
+    <<: *node
+    container_name: blockstore5-node5
+    hostname: node5
+    environment:
+      NODE_ID: node5
+      NODE_SECRET: ${NODE5_SECRET:-demo-secret-node5}
+      CONTROL_TOKEN: ${CONTROL_TOKEN:-blockstore5-demo-token}
+    ports:
+      - "8005:8000"
+    volumes:
+      - node5-data:/data
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: blockstore5-backend
+    restart: unless-stopped
+    networks: [blockstore]
+    environment:
+      NODE_URLS: node1=http://node1:8000,node2=http://node2:8000,node3=http://node3:8000,node4=http://node4:8000,node5=http://node5:8000
+      NODE1_SECRET: ${NODE1_SECRET:-demo-secret-node1}
+      NODE2_SECRET: ${NODE2_SECRET:-demo-secret-node2}
+      NODE3_SECRET: ${NODE3_SECRET:-demo-secret-node3}
+      NODE4_SECRET: ${NODE4_SECRET:-demo-secret-node4}
+      NODE5_SECRET: ${NODE5_SECRET:-demo-secret-node5}
+      CONTROL_TOKEN: ${CONTROL_TOKEN:-blockstore5-demo-token}
+      TRUSTGRID_DEMO_USERS: ${TRUSTGRID_DEMO_USERS:-}
+      CORS_ORIGINS: http://localhost:5173,http://127.0.0.1:5173
+    ports:
+      - "8000:8000"
+    volumes:
+      - backend-data:/data
+    depends_on: [node1, node2, node3, node4, node5]
+
+  frontend:
+    build: ./frontend
+    container_name: blockstore5-frontend
+    restart: unless-stopped
+    networks: [blockstore]
+    ports:
+      - "5173:80"
+    depends_on: [backend]
+
+networks:
+  blockstore:
+    driver: bridge
+
+volumes:
+  node1-data:
+  node2-data:
+  node3-data:
+  node4-data:
+  node5-data:
+  backend-data:

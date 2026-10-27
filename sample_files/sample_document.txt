@@ -1,0 +1,3 @@
+BlockStore-5 sample document
+This file is replicated across five independent storage nodes.
+Its SHA-256 hash is recorded on the ledger.
